@@ -1,7 +1,7 @@
 """
 Parser for the semantic role labelling layer in KAF/NAF
 """
-from __future__ import print_function
+
 
 from lxml import etree
 

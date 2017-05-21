@@ -211,7 +211,7 @@ class Centities:
             entity = Centity(node_entity,self.type)
             entity.add_external_reference(ext_ref)
         else:
-            print>>sys.stderr,'Trying to add a reference to the entity',entity_id,'but can not be found in this file'
+            print('Trying to add a reference to the entity',entity_id,'but can not be found in this file', file=sys.stderr)
 
 
     def get_node(self):

@@ -18,7 +18,7 @@ different layers as python objects. It also allows to create a new KAF/NAF file 
 # v1.3.2 --> added markable layer and main accompanying functions
 ################################################
 
-from __future__ import print_function
+
 
 __last_modified__  = '2September2015'
 __version__ = '1.3.1'

@@ -124,7 +124,7 @@ class Cdependency_extractor:
             '''
         ####
 
-        for sent_id, distr in self.root_for_sentence.items():
+        for sent_id, distr in list(self.root_for_sentence.items()):
             ## get_max_distr_dict originally imported from VUA_pylib.common; now fixed to work with python3
             most_freq,c = get_max_distr_dict(distr)
             self.root_for_sentence[sent_id] = most_freq

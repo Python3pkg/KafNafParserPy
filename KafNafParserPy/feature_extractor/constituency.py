@@ -3,7 +3,7 @@
 """
 This module provides methods for extracting elaborated information from the constituency layer in a KAF/NAF file
 """
-from __future__ import print_function
+
 
 from operator import itemgetter
 from collections import defaultdict
@@ -32,14 +32,14 @@ class Cconstituency_extractor:
         
         #Extracting all posible paths from leave to root for each terminal id
         self.paths_for_terminal= {}
-        for terminal_id in self.terminals.keys():
+        for terminal_id in list(self.terminals.keys()):
             paths = self.__expand_node(terminal_id,False)
             self.paths_for_terminal[terminal_id] = paths
         #######################################
         
         ## Create, for each non terminal, which are the terminals subsumed
         self.terms_subsumed_by_nonter = {}  ## ['nonter12'] = set('t1,'t2','t3','t4')
-        for terminal_id, span_terms in self.terminals.items():
+        for terminal_id, span_terms in list(self.terminals.items()):
             for path in self.paths_for_terminal[terminal_id]:
                 for nonter in path:
                     if nonter not in self.terms_subsumed_by_nonter:
@@ -60,7 +60,7 @@ class Cconstituency_extractor:
                
     def get_deepest_phrases(self):
         all_nonter = set()
-        for terminal in self.terminals.keys():
+        for terminal in list(self.terminals.keys()):
             for path in self.paths_for_terminal[terminal]:
                 first_non_ter_phrase = path[1]
                 subsumed = self.terms_subsumed_by_nonter[first_non_ter_phrase]
@@ -70,7 +70,7 @@ class Cconstituency_extractor:
         
         ter_for_nonter = {}
         for nonter in all_nonter:
-            for terminal in self.terminals.keys():
+            for terminal in list(self.terminals.keys()):
                 for path in self.paths_for_terminal[terminal]:
                     if nonter in path:
                         if nonter in ter_for_nonter:
@@ -79,7 +79,7 @@ class Cconstituency_extractor:
                             ter_for_nonter[nonter] = [terminal]
         
         visited = set()
-        for nonter, list_term in ter_for_nonter.items():
+        for nonter, list_term in list(ter_for_nonter.items()):
             for ter in list_term:
                 print(ter)
                 visited.add(ter)
@@ -236,7 +236,7 @@ class Cconstituency_extractor:
                 
         deepest_and_common = None
         deepest = 10000
-        for noterid, this_total in total_deep_per_no_terminal.items():
+        for noterid, this_total in list(total_deep_per_no_terminal.items()):
             if count_per_no_terminal.get(noterid,-1) == len(list_terms):    ##Only the nontarms that ocurr with all the term ids in the input
                 if this_total < deepest:
                     deepest = this_total
@@ -275,7 +275,7 @@ class Cconstituency_extractor:
         @rtype: list
         @return: the chunks for that type
         """
-        for nonter,this_type in self.label_for_nonter.items():
+        for nonter,this_type in list(self.label_for_nonter.items()):
             if this_type == chunk_type:
                 subsumed = self.terms_subsumed_by_nonter.get(nonter)
                 if subsumed is not None:
@@ -287,7 +287,7 @@ class Cconstituency_extractor:
     def get_all_deepest_chunks(self):
         all_chunks = []
         n=0
-        for nonter,this_type in self.label_for_nonter.items():
+        for nonter,this_type in list(self.label_for_nonter.items()):
             subsumed = self.terms_subsumed_by_nonter.get(nonter)
             print(nonter, this_type, subsumed)
             continue

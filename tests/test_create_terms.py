@@ -13,10 +13,10 @@ def test_create_terms():
     
     naf = KafNafParser(type="NAF")
     sent=1; offset=0
-    input = [(u'dit', u'dit', u'O', u'VNW'),
-             (u'is', u'zijn', u'V', u'WW'),
-             (u'een', u'een', u'D', u'LID'),
-             (u'test', u'test', u'N', u'N')]
+    input = [('dit', 'dit', 'O', 'VNW'),
+             ('is', 'zijn', 'V', 'WW'),
+             ('een', 'een', 'D', 'LID'),
+             ('test', 'test', 'N', 'N')]
 
     offset = 0
     for (word, lemma, pos, morph) in input:

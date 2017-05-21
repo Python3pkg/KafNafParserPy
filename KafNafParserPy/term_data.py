@@ -1,7 +1,7 @@
 """
 This module parses the term layer of a KAF/NAF object
 """
-from __future__ import print_function
+
 
 from lxml import etree
 
